@@ -5,19 +5,24 @@ pub struct Player {
 
 impl Player {
 
-    pub fn new(text: &str) -> Player {
-        for (irow, row) in text.trim().split("\n").enumerate() {
-            for (icol, col) in row.chars().enumerate() {
-                if col == 'P' {
-                    return Player{ row: irow as u8, col: icol as u8 }
-                }
-            }
-        }
-        Player{ row: 0, col: 0 }
+    pub fn new(pos: (u8, u8)) -> Player {
+        Player{ row: pos.0, col: pos.1 }
     }
 
-    pub fn up(&self) {
+    pub fn up(&mut self) {
+        self.row -= 1;
+    }
 
+    pub fn right(&mut self) {
+        self.col += 1;
+    }
+
+    pub fn down(&mut self) {
+        self.row += 1;
+    }
+
+    pub fn left(&mut self) {
+        self. col -= 1;
     }
 
     pub fn exists(&self, irow: u8, icol: u8) -> bool {
@@ -28,26 +33,21 @@ impl Player {
 
 #[test]
 fn position_test(){
-    let map = test_map();
-    let p = Player::new(&map);
-    assert_eq!(p.row, 1);
-    assert_eq!(p.col, 0);
+    let p = Player::new((1, 0));
+    assert!(p.exists(1, 0));
+    assert!(!p.exists(1, 1));
 }
 
 #[test]
 fn move_test(){
-    let map = test_map();
-    let p = Player::new(&map);
+    let mut p = Player::new((1, 0));
+    assert!(p.exists(1, 0));
+    p.right();
+    assert!(p.exists(1, 1));
+    p.down();
+    assert!(p.exists(2, 1));
+    p.left();
+    assert!(p.exists(2, 0));
     p.up();
-    assert_eq!(p.row, 1);
-    assert_eq!(p.col, 0);
-}
-
-fn test_map() -> String {
-r#"
-1111
-P011
-100G
-1111
-"#.to_string()
+    assert!(p.exists(1, 0));
 }

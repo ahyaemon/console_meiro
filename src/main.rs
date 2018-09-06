@@ -5,11 +5,12 @@ mod row;
 mod player;
 mod goal;
 mod map;
+mod text;
 
 fn main() {
+    let text = text::Text::from_str(map_str());
     let screen = screen::Screen::new();
-    let text_map = text_map();
-    let stage = stage::Stage::from_text(text_map);
+    let mut stage = stage::Stage::from_text(text);
 
     screen.show_title();
 
@@ -51,7 +52,7 @@ fn main() {
 
 }
 
-fn text_map() -> String {
+fn map_str() -> String {
     r#"
 1111
 P011

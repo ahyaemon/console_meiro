@@ -5,9 +5,9 @@ pub struct Map {
 }
 
 impl Map {
-    pub fn new(text: &str) -> Map {
+    pub fn new(map_str: &str) -> Map {
         let mut rows = vec![];
-        for line in text.trim().split('\n') {
+        for line in map_str.trim().split('\n') {
             let row = Row::from_line(line);
             rows.push(row);
         };
