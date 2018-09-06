@@ -26,3 +26,42 @@ impl Text {
     }
 
 }
+
+#[cfg(test)]
+mod tests{
+
+    use super::*;
+
+    // 'P' の位置を探す
+    #[test]
+    fn search_p(){
+        let map_str = utils::map_str();
+        let text = Text::from_str(map_str);
+        let ppos = Pos::new(1, 0);
+        assert_eq!(text.find_position('P'), ppos);
+    }
+
+    // trimされているか？
+    #[test]
+    fn trim(){
+        let map_str = utils::map_str();
+        let text = Text::from_str(map_str);
+        let str_actual = r#"1111
+P011
+100G
+1111"#;
+        assert_eq!(text.borrow_str(), str_actual);
+    }
+
+    mod utils{
+        pub fn map_str() -> String {
+            r#"
+1111
+P011
+100G
+1111
+            "#.to_string()
+        }
+    }
+
+}
