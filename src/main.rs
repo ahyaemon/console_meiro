@@ -6,6 +6,7 @@ mod player;
 mod goal;
 mod map;
 mod text;
+mod pos;
 
 fn main() {
     let text = text::Text::from_str(map_str());

@@ -1,23 +1,36 @@
+use pos::Pos;
+
 pub struct Goal {
-    row: u8,
-    col: u8
+    pos: Pos
 }
 
 impl Goal {
 
-    pub fn new(pos: (u8, u8)) -> Goal {
-        Goal{ row: pos.0, col: pos.1 }
+    pub fn new(pos: Pos) -> Goal {
+        Goal{ pos }
     }
 
-    pub fn exists(&self, irow: u8, icol: u8) -> bool {
-        (irow == self.row) && (icol == self.col)
+    pub fn exists(&self, pos: &Pos) -> bool {
+        *pos == self.pos
     }
 
 }
 
-#[test]
-fn position_test(){
-    let g = Goal::new((2, 3));
-    assert_eq!(g.row, 2);
-    assert_eq!(g.col, 3);
+
+// -------------------------
+// Tests
+// -------------------------
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+
+    #[test]
+    fn position_test(){
+        let gpos = Pos::new(2, 3);
+        let g = Goal::new(gpos);
+        let pos = Pos::new(2, 3);
+        assert!(g.exists(&pos));
+    }
+
 }

@@ -1,5 +1,4 @@
 use std::io;
-use std::fmt;
 
 pub enum Command {
     Up,
@@ -32,45 +31,39 @@ impl Command{
     }
 }
 
-impl fmt::Display for Command{
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>{
-        let s = match self {
-            Command::Up => "Up",
-            Command::Right => "Right",
-            Command::Down => "Down",
-            Command::Left => "Left",
-            Command::Quit => "Quit",
-            _ => "???"
-        };
-        write!(f, "{}", s)
+
+// -------------------------
+// Tests
+// 標準入力が必要となるので、ignoreしておく
+// -------------------------
+#[cfg(test)]
+mod tests{
+
+    use super::*;
+
+    #[test]
+    #[ignore]
+    fn test_input_up(){
+        let input = Command::from_input(); // input [w].
+        match input {
+            Ok(key) => {
+                match key {
+                    Command::Up => assert!(true),
+                    _ => assert!(false)
+                }
+            }
+            Err(_) => assert!(false)
+        }
     }
+
+    #[test]
+    #[ignore]
+    fn test_input_invalid(){
+        let input = Command::from_input(); // input [q].
+        match input {
+            Ok(_) => assert!(false),
+            Err(_) => assert!(true)
+        }    
+    }
+
 }
-
-// --------------------
-// 自動入力のみテスト
-// --------------------
-// #[test]
-// fn test_input_up(){
-//     let input = get_key(); // input [w].
-//     match input {
-//         Ok(key) => {
-//             match key {
-//                 Key::Up => assert!(true),
-//                 _ => assert!(false)
-//             }
-//         }
-//         Err(_) => assert!(false)
-//     }
-// }
-
-// --------------------
-// 自動入力のみテスト
-// --------------------
-// #[test]
-// fn test_input_invalid(){
-//     let input = get_key(); // input [q].
-//     match input {
-//         Ok(_) => assert!(false),
-//         Err(_) => assert!(true)
-//     }    
-// }

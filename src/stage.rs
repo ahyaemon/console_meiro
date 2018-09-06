@@ -3,6 +3,7 @@ use command::Command;
 use player::Player;
 use goal::Goal;
 use text::Text;
+use pos::Pos;
 
 pub struct Stage {
     map: Map,
@@ -22,7 +23,13 @@ impl Stage {
 
     pub fn update(&mut self, command: Command) {
         match command {
-            Command::Up => self.player.up(),
+            Command::Up => {
+                // 上に行けるかどうかの判定
+                let pos_up = self.player.pos_up();
+            }
+            Command::Right => self.player.right(),
+            Command::Down => self.player.down(),
+            Command::Left => self.player.left(),
             _ => {}
         };
     }
@@ -32,11 +39,13 @@ impl Stage {
         let mut text = "".to_string();
         for (irow, row) in rows.iter().enumerate() {
             for (icol, cell) in row.iter().enumerate() {
-                if self.player.exists(irow as u8, icol as u8) {
+                let pos = Pos::new(irow as u8, icol as u8);
+
+                if self.player.exists(&pos) {
                     text += "●";
                     continue;
                 }
-                if self.goal.exists(irow as u8, icol as u8) {
+                if self.goal.exists(&pos) {
                     text += "★";
                     continue;
                 }
