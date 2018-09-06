@@ -46,11 +46,8 @@ mod tests{
     fn trim(){
         let map_str = utils::map_str();
         let text = Text::from_str(map_str);
-        let str_actual = r#"1111
-P011
-100G
-1111"#;
-        assert_eq!(text.borrow_str(), str_actual);
+        let str_actual = utils::map_str_trimmed();
+        assert_eq!(text.borrow_str(), &str_actual);
     }
 
     mod utils{
@@ -61,6 +58,13 @@ P011
 100G
 1111
             "#.to_string()
+        }
+
+        pub fn map_str_trimmed() -> String {
+            r#"1111
+P011
+100G
+1111"#.to_string()            
         }
     }
 
