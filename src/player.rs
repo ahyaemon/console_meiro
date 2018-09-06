@@ -56,6 +56,7 @@ mod tests{
 
     use super::*;
 
+    // プレイヤーの生成
     #[test]
     fn position_test(){
         let ppos = Pos::new(1, 0);
@@ -68,6 +69,7 @@ mod tests{
         assert!(!p.exists(&pos2));
     }
 
+    // プレイヤーの移動
     #[test]
     fn move_test(){
         let ppos = Pos::new(1, 0);

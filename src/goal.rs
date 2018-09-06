@@ -25,6 +25,7 @@ mod tests {
 
     use super::*;
 
+    // ゴールの生成
     #[test]
     fn position_test(){
         let gpos = Pos::new(2, 3);
