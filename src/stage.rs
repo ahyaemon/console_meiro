@@ -24,14 +24,57 @@ impl Stage {
     pub fn update(&mut self, command: Command) {
         match command {
             Command::Up => {
-                // 上に行けるかどうかの判定
-                let pos_up = self.player.pos_up();
+                let next_pos = self.player.pos_up();
+                if self.map.out_of_range(&next_pos) {
+                    return
+                }
+
+                let next_pos = (next_pos.0 as u8, next_pos.1 as u8);
+                if self.map.empty_space(&next_pos) {
+                    self.player.up();
+                }
             }
-            Command::Right => self.player.right(),
-            Command::Down => self.player.down(),
-            Command::Left => self.player.left(),
+            Command::Right => {
+                let next_pos = self.player.pos_right();
+                if self.map.out_of_range(&next_pos) {
+                    return
+                }
+
+                let next_pos = (next_pos.0 as u8, next_pos.1 as u8);
+                if self.map.empty_space(&next_pos) {
+                    self.player.right();
+                }
+            }
+            Command::Down => {
+                let next_pos = self.player.pos_down();
+                if self.map.out_of_range(&next_pos) {
+                    return
+                }
+
+                let next_pos = (next_pos.0 as u8, next_pos.1 as u8);
+                if self.map.empty_space(&next_pos) {
+                    self.player.down();
+                }
+            }
+            Command::Left => {
+                let next_pos = self.player.pos_left();
+                if self.map.out_of_range(&next_pos) {
+                    return
+                }
+
+                let next_pos = (next_pos.0 as u8, next_pos.1 as u8);
+                if self.map.empty_space(&next_pos) {
+                    self.player.left();
+                }
+            }
             _ => {}
         };
+
+        
+        // if(self.player.pos() == self.goal.pos()){
+        //     state = State::Clear
+        // }
+
     }
 
     pub fn map_text(&self) -> String {

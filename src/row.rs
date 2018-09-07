@@ -16,14 +16,16 @@ impl Row {
         Row{ cells }
     }
 
-    pub fn to_line(&self) -> String {
-        self.cells.iter()
-                .map(|cell| cell.to_string())
-                .collect::<Vec<String>>()
-                .concat()
+    pub fn cells(&self) -> &Vec<u8> {
+        &self.cells
     }
 
-    pub fn cells(&self) -> &Vec<u8> {
-        return &self.cells;
+    pub fn cell(&self, index: usize) -> &u8 {
+        &self.cells[index]
     }
+
+    pub fn count_cells(&self) -> u8 {
+        self.cells.len() as u8
+    }
+
 }

@@ -6,11 +6,11 @@ impl Screen {
 
     pub fn new() -> Screen {
         let title = r#"
-        #########################################################
-        #                                                       #
-        #  Hello, welcome to meiro of the super meironic meiro  #
-        #                                                       #
-        #########################################################
+        #############################################################
+        #                                                           #
+        #  Hello, Welcome To The Meiro Of The Super Meironic Meiro  #
+        #                                                           #
+        #############################################################
         "#.to_string();
         Screen{ title }
     }
@@ -23,9 +23,9 @@ impl Screen {
         println!("");
     }
 
-    pub fn show(&self, s: &str) {
-        print!("{}", s);
-    }
+    // pub fn show(&self, s: &str) {
+    //     print!("{}", s);
+    // }
 
     pub fn show_title(&self) {
         self.newln();

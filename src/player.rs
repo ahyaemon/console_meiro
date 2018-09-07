@@ -14,32 +14,32 @@ impl Player {
         self.pos.row -= 1;
     }
 
-    pub fn pos_up(&self) -> (u8, u8){
-        (self.pos.row - 1, self.pos.col)
+    pub fn pos_up(&self) -> (i8, i8){
+        ((self.pos.row - 1) as i8, self.pos.col as i8)
     }
 
     pub fn right(&mut self) {
         self.pos.col += 1;
     }
 
-    pub fn pos_right(&self) -> (u8, u8){
-        (self.pos.row, self.pos.col + 1)
+    pub fn pos_right(&self) -> (i8, i8){
+        (self.pos.row as i8, (self.pos.col + 1) as i8)
     }
 
     pub fn down(&mut self) {
         self.pos.row += 1;
     }
 
-    pub fn pos_down(&self) -> (u8, u8){
-        (self.pos.row + 1, self.pos.col)
+    pub fn pos_down(&self) -> (i8, i8){
+        ((self.pos.row + 1) as i8, self.pos.col as i8)
     }
 
     pub fn left(&mut self) {
         self.pos.col -= 1;
     }
 
-    pub fn pos_left(&self) -> (u8, u8){
-        (self.pos.row, self.pos.col - 1)
+    pub fn pos_left(&self) -> (i8, i8){
+        (self.pos.row as i8, (self.pos.col - 1) as i8)
     }
 
     pub fn exists(&self, pos: &Pos) -> bool {
