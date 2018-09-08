@@ -4,11 +4,13 @@ use player::Player;
 use goal::Goal;
 use text::Text;
 use pos::Pos;
+use state::State;
 
 pub struct Stage {
     map: Map,
     player: Player,
-    goal: Goal
+    goal: Goal,
+    state: State
 }
 
 impl Stage {
@@ -17,8 +19,8 @@ impl Stage {
         let map = Map::new(text.borrow_str());
         let player = Player::new(text.find_position('P'));
         let goal = Goal::new(text.find_position('G'));
-
-        Stage{ map, player, goal }
+        let state = State::Play;
+        Stage{ map, player, goal, state}
     }
 
     pub fn update(&mut self, command: Command) {
@@ -69,12 +71,15 @@ impl Stage {
             }
             _ => {}
         };
-
         
-        // if(self.player.pos() == self.goal.pos()){
-        //     state = State::Clear
-        // }
+        if self.player.pos() == self.goal.pos() {
+            self.state = State::Clear
+        }
 
+    }
+
+    pub fn clear(&self) -> bool {
+        self.state == State::Clear
     }
 
     pub fn map_text(&self) -> String {

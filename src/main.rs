@@ -7,6 +7,7 @@ mod goal;
 mod map;
 mod text;
 mod pos;
+mod state;
 
 fn main() {
     let text = text::Text::from_str(map_str());
@@ -47,18 +48,22 @@ fn main() {
             }
         };
 
-        // ステージの状態を取得し、分岐する？
-
+        if stage.clear() {
+            screen.show_clear();
+            break;
+        }
     }
 
 }
 
 fn map_str() -> String {
     r#"
-1111
-P011
-100G
-1111
+1111111
+P010001
+1011101
+1000001
+100100G
+1111111
     "#.to_string()
 }
 

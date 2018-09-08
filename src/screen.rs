@@ -1,5 +1,6 @@
 pub struct Screen {
-    title: String
+    title: String,
+    clear: String
 }
 
 impl Screen {
@@ -12,7 +13,16 @@ impl Screen {
         #                                                           #
         #############################################################
         "#.to_string();
-        Screen{ title }
+
+        let clear = r#"
+        #######################
+        #                     #
+        #  g a m e c l e a r  #
+        #                     #
+        #######################
+        "#.to_string();
+
+        Screen{ title, clear }
     }
 
     pub fn showln(&self, s: &str) {
@@ -33,6 +43,14 @@ impl Screen {
         self.newln();
         self.newln();
         self.showln(&self.title);
+    }
+
+    pub fn show_clear(&self) {
+        self.newln();
+        self.newln();
+        self.newln();
+        self.newln();
+        self.showln(&self.clear);
     }
 
 }

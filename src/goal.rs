@@ -14,6 +14,10 @@ impl Goal {
         *pos == self.pos
     }
 
+    pub fn pos(&self) -> &Pos {
+        &self.pos
+    }
+
 }
 
 
