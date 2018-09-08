@@ -1,4 +1,4 @@
-use pos::Pos;
+use super::pos::Pos;
 
 pub struct Goal {
     pos: Pos

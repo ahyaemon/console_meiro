@@ -1,10 +1,17 @@
-use map::Map;
+mod map;
+mod player;
+mod goal;
+pub mod pos;
+mod state;
+mod row;
+
+use self::map::Map;
 use command::Command;
-use player::Player;
-use goal::Goal;
+use self::player::Player;
+use self::goal::Goal;
 use text::Text;
-use pos::Pos;
-use state::State;
+use self::pos::Pos;
+use self::state::State;
 
 pub struct Stage {
     map: Map,

@@ -1,4 +1,4 @@
-use pos::Pos;
+use super::stage::pos::Pos;
 
 pub struct Text (String);
 

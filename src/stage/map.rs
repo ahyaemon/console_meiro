@@ -1,4 +1,4 @@
-use row::Row;
+use super::row::Row;
 
 pub struct Map {
     rows: Vec<Row>,
