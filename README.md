@@ -1,9 +1,7 @@
 # console_meiro
 コンソール上で動作する迷路ゲーム
 
-## 作成環境
-windows10
-vscode
+![sample](https://raw.githubusercontent.com/ahyaemon/console_meiro/master/img/sample.png "sample")
 
 ## 動かし方
 ```
